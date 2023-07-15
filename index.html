@@ -43,17 +43,15 @@
 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script>
-    function validarFormulario() {
+    async function validarFormulario() {
       // Obtém os valores dos campos de entrada
       var username = document.getElementById('username').value;
       var password = document.getElementById('password').value;
 
-      // Verifica se as credenciais são válidas
-      if (username === "1001" && password === "pad10") {
+      // Verifica se o usuário e a senha correspondem
+      if (username === '1001' && password === 'pad01') {
         alert('Login realizado com sucesso!');
-        // Redireciona o usuário para a página "calculadorareceita.html"
-        window.location.href = 'calculadorareceita.html';
-        return false; // Impede o envio do formulário
+        return true; // Permite o envio do formulário
       } else {
         alert('Usuário ou senha inválidos.');
         return false; // Impede o envio do formulário
