@@ -48,28 +48,42 @@
       var username = document.getElementById('username').value;
       var password = document.getElementById('password').value;
 
-      // Faz a requisição à API para obter os dados da planilha
-      let url = `https://api.sheety.co/b98b5d99fb0dbe25ddbde06b7da99b31/login/loginpad`;
-      
+      // Faz a requisição à API Sheety para obter os dados da planilha
+      let sheetyUrl = 'https://api.sheety.co/b98b5d99fb0dbe25ddbde06b7da99b31/login/loginpad';
       try {
-        const response = await fetch(url);
+        const response = await fetch(sheetyUrl);
         const data = await response.json();
 
-        // Verifica se existe um usuário com as credenciais fornecidas
-        var user = data.loginpad.find(function(item) {
+        // Verifica se existe um usuário com as credenciais fornecidas na API Sheety
+        var userSheety = data.loginpad.find(function(item) {
           return item.usuario === username && item.senha === password;
         });
 
-        // Validação dos campos de usuário e senha
-        if (!user) {
+        if (!userSheety) {
           alert('Usuário ou senha inválidos.');
           return false; // Impede o envio do formulário
         }
 
-        // Se chegarmos até aqui, o formulário é válido
-        alert('Login realizado com sucesso!');
-        // Redireciona o usuário para a página "calculadorareceita.html"
-        window.location.href = 'calculadorareceita.html';
+        // Agora, faça a requisição AJAX para a rota "validar_login.php" no servidor para autenticação com o banco de dados MySQL
+        let loginUrl = 'validar_login.php';
+        const loginResponse = await fetch(loginUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+        });
+
+        const loginData = await loginResponse.json();
+
+        if (loginData.status === "success") {
+          alert('Login realizado com sucesso!');
+          // Redireciona o usuário para a página "calculadorareceita.html"
+          window.location.href = 'calculadorareceita.html';
+        } else {
+          alert('Usuário ou senha inválidos.');
+        }
+
         return false; // Impede o envio do formulário
       } catch (error) {
         alert('Ocorreu um erro ao validar o login.');
