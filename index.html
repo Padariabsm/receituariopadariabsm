@@ -48,12 +48,32 @@
       var username = document.getElementById('username').value;
       var password = document.getElementById('password').value;
 
-      // Verifica se o usuário e a senha correspondem
-      if (username === '1001' && password === 'pad01') {
+      // Faz a requisição à API para obter os dados da planilha
+      let url = `https://api.sheety.co/b98b5d99fb0dbe25ddbde06b7da99b31/login/loginpad`;
+      
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // Verifica se existe um usuário com as credenciais fornecidas
+        var user = data.loginpad.find(function(item) {
+          return item.usuario === username && item.senha === password;
+        });
+
+        // Validação dos campos de usuário e senha
+        if (!user) {
+          alert('Usuário ou senha inválidos.');
+          return false; // Impede o envio do formulário
+        }
+
+        // Se chegarmos até aqui, o formulário é válido
         alert('Login realizado com sucesso!');
-        return true; // Permite o envio do formulário
-      } else {
-        alert('Usuário ou senha inválidos.');
+        // Redireciona o usuário para a página "calculadorareceita.html"
+        window.location.href = 'calculadorareceita.html';
+        return false; // Impede o envio do formulário
+      } catch (error) {
+        alert('Ocorreu um erro ao validar o login.');
+        console.log(error);
         return false; // Impede o envio do formulário
       }
     }
