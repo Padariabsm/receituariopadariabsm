@@ -1,7 +1,7 @@
-
+ <script>
     // Configuração do Firebase
     var firebaseConfig = {
-      apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
+     apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
       authDomain: "padariareceituario.firebaseapp.com",
       projectId: "padariareceituario",
       storageBucket: "padariareceituario.appspot.com",
@@ -32,5 +32,4 @@
           document.getElementById("error-message").innerText = "Credenciais inválidas. Por favor, verifique o e-mail e a senha.";
         });
     });
-
-
+  </script>
