@@ -88,11 +88,11 @@
       </form>
     </div>
   </div>
-  
+
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
   <script>
-    // Inicialize o Firebase com suas credenciais
+    // Configuração do Firebase
     var fireBase = fireBase || firebase;
     var hasInit = false;
     var config = {
@@ -108,14 +108,14 @@
       hasInit = true;
     }
 
-    // Adicione o evento de submissão do formulário
+    // Função de login
     document.getElementById("login-form").addEventListener("submit", (event) => {
       event.preventDefault();
       const email = event.target.email.value;
       const password = event.target.password.value;
       const manterLogado = event.target.manterLogado.checked;
 
-      // Adicione aqui o código para realizar o login utilizando o Firebase Auth
+      // Realizar o login utilizando o Firebase Auth
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then((userCredential) => {
           if (manterLogado) {
@@ -129,9 +129,18 @@
           console.log(error);
         });
     });
+
+    // Validação do login
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // Usuário autenticado, redirecionar para a página principal
+        // (ou qualquer outra ação que deseje fazer após o login)
+        window.location.href = "index.html";
+      } else {
+        // Usuário não autenticado, permanece na página de login
+      }
+    });
   </script>
-  <script src="fireBase.js"></script>
-<script src="login.js"></script>
-<script src="main.js"></script>
 </body>
 </html>
+
