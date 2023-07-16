@@ -1,127 +1,48 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tela de Login</title>
-  <style>
-    body, html {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-
-    .container {
-      display: flex;
-      height: 100%;
-    }
-
-    .img-container {
-      flex: 1;
-      background-color: #f1f1f1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .img-container img {
-      max-width: 100%;
-      max-height: 100%;
-      display: block;
-    }
-
-    .form-container {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      max-width: 300px;
-      width: 100%;
-    }
-
-    input, button {
-      margin-bottom: 10px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-
-    button {
-      background-color: #007bff;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    a {
-      color: #007bff;
-      text-decoration: none;
-    }
-
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aim Helper</title>
+    <!-- Adicionando os links do Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container">
-    <div class="img-container">
-      <img src="caminho/para/imagem.jpg" alt="Imagem de fundo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Aqui colocamos a imagem à esquerda -->
+                <img src="caminho/para/sua/imagem.jpg" alt="Imagem de login" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <!-- Aqui colocamos o formulário de login à direita -->
+                <h1 class="text-center">Login Para Jogar</h1>
+                <div id="firebaseui-auth-container">
+                    <!-- Adicionando os campos de usuário, senha e manter logado -->
+                    <div class="form-group">
+                        <label for="usuario">Usuário</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Digite seu usuário">
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="manterLogado">
+                        <label class="form-check-label" for="manterLogado">Manter logado</label>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="realizarLogin()">Login</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="form-container">
-      <h1>Faça login</h1>
-      <form id="login-form">
-        <input type="email" name="email" placeholder="E-mail" required>
-        <input type="password" name="password" placeholder="Senha" required>
-        <label>
-          <input type="checkbox" name="manterLogado"> Manter logado
-        </label>
-        <button type="submit">Entrar</button>
-        <p>Ainda não tem uma conta? <a href="#">Registrar-se</a></p>
-      </form>
-    </div>
-  </div>
-  
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
-  <script>
-    // Inicialize o Firebase com suas credenciais
-    // const firebaseConfig = {
-    //   apiKey: "sua_api_key",
-    //   authDomain: "seu_projeto.firebaseapp.com",
-    //   projectId: "seu_projeto",
-    //   storageBucket: "seu_projeto.appspot.com",
-    //   messagingSenderId: "seu_sender_id",
-    //   appId: "seu_app_id"
-    // };
-    // firebase.initializeApp(firebaseConfig);
 
-    document.getElementById("login-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-      const email = event.target.email.value;
-      const password = event.target.password.value;
-      const manterLogado = event.target.manterLogado.checked;
-
-      // Adicione aqui o código para realizar o login utilizando o Firebase Auth
-      // Por exemplo:
-      // firebase.auth().signInWithEmailAndPassword(email, password)
-      //   .then((userCredential) => {
-      //     if (manterLogado) {
-      //       // Manter o usuário logado (usando cookies ou local storage)
-      //     }
-      //     // Redirecionar para a página após o login
-      //   })
-      //   .catch((error) => {
-      //     // Lidar com erros de login, exibir mensagens de erro, etc.
-      //   });
-    });
-  </script>
+    <!-- Adicionando os scripts do Firebase e Bootstrap -->
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <script src="fireBase.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
