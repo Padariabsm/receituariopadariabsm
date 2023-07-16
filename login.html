@@ -69,5 +69,13 @@
                 });
         }
     </script>
+
+    <!-- Script para resetar a página do zero ao atualizar -->
+    <script>
+        window.onbeforeunload = function () {
+            window.localStorage.clear(); // Limpa o armazenamento local do navegador
+            location.reload(); // Recarrega a página do zero
+        };
+    </script>
 </body>
 </html>
