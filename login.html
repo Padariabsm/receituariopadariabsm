@@ -1,68 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Receita PadariaBSM - Login</title>
-  <!-- Add any CSS links here -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aim Helper</title>
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
+    
 </head>
 <body>
-  <div class="container">
-    <div class="image-section">
-      <img src="path/to/your/image.jpg" alt="PadariaBSM Image">
-    </div>
-    <div class="form-section">
-      <h1>Login</h1>
-      <form id="login-form">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
+    <!-- The surrounding HTML is left untouched by FirebaseUI.
+         Your app may use that space for branding, controls and other customizations.-->
+         <h1 style="text-align: center;">Login To Play</h1>
+         <div id="firebaseui-auth-container"></div>
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-
-        <button type="submit">Login</button>
-      </form>
-    </div>
-  </div>
-  
-  <!-- Add Firebase SDK script -->
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.0.2/firebase-auth.js"></script>
-  
-  <script>
-    // Initialize Firebase with the provided credentials
-    const firebaseConfig = {
-      apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
-      authDomain: "padariareceituario.firebaseapp.com",
-      projectId: "padariareceituario",
-      storageBucket: "padariareceituario.appspot.com",
-      messagingSenderId: "159527859464",
-      appId: "1:159527859464:web:8888b169348e12fe1868bd"
-    };
-    firebase.initializeApp(firebaseConfig);
-
-    // Add event listener to the login form
-    document.getElementById("login-form").addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      // Get the input values
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      // Use Firebase authentication to sign in the user
-      firebase.auth().signInWithEmailAndPassword(username, password)
-        .then((userCredential) => {
-          // Handle successful login here
-          console.log("User logged in:", userCredential.user);
-          alert("Login successful!");
-          window.location.href = "index.html"; // Redirect to index.html after successful login
-        })
-        .catch((error) => {
-          // Handle login errors here
-          console.error("Login error:", error);
-          alert("Login failed. Please check your credentials and try again.");
-        });
-    });
-  </script>
+<script src="fireBase.js"></script>
+<script src="login.js"></script>
 </body>
 </html>
