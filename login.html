@@ -1,39 +1,74 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tela de Login</title>
-  <!-- Adicione aqui o link para a biblioteca do Bootstrap -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Seu estilo CSS aqui */
+  </style>
 </head>
 <body>
-  <div class="container mt-5">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h2>Login</h2>
-        <form id="loginForm">
-          <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" class="form-control" id="email" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Senha:</label>
-            <input type="password" class="form-control" id="password" required>
-          </div>
-          <button type="submit" class="btn btn-primary">Entrar</button>
-          <button type="button" class="btn btn-link" id="btnRegister">Registrar</button>
-        </form>
-        <div id="errorMessage" class="mt-3 text-danger" style="display: none;">E-mail ou senha incorretos.</div>
-        <div id="successMessage" class="mt-3 text-success" style="display: none;">Logado com sucesso! Redirecionando...</div>
+  <div class="container">
+    <h2>Tela de Login</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
       </div>
+      <div class="form-group">
+        <label for="password">Senha</label>
+        <input type="password" id="password" name="password" required>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn">Entrar</button>
+        <button type="button" class="btn btn-register">Registrar como Profissional</button>
+      </div>
+    </form>
+    <div class="form-footer">
+      <a href="#">Esqueceu a senha?</a>
     </div>
   </div>
 
-  <!-- Adicione aqui o link para a biblioteca do Firebase -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-  <!-- Adicione aqui o link para o seu arquivo JavaScript personalizado, que está fora da pasta -->
-  <script src="login.js"></script>
+  <!-- Importar a biblioteca do Firebase -->
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-auth.js"></script>
+  <script>
+    // Configuração do Firebase
+    var firebaseConfig = {
+     apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
+      authDomain: "padariareceituario.firebaseapp.com",
+      projectId: "padariareceituario",
+      storageBucket: "padariareceituario.appspot.com",
+      messagingSenderId: "159527859464",
+      appId: "1:159527859464:web:8888b169348e12fe1868bd"
+    };
+
+    // Inicializar o Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Referenciar o formulário
+    const loginForm = document.getElementById('loginForm');
+
+    // Escutar o evento de submit do formulário
+    loginForm.addEventListener('submit', (event) => {
+      event.preventDefault(); // Impede o envio do formulário
+
+      // Obter os valores dos campos de email e senha
+      const email = loginForm.email.value;
+      const password = loginForm.password.value;
+
+      // Fazer login com o Firebase Authentication
+      firebase.auth().signInWithEmailAndPassword(email, password)
+        .then((userCredential) => {
+          // Login bem sucedido, redirecionar para a página inicial, por exemplo:
+          window.location.href = "index.html";
+        })
+        .catch((error) => {
+          // Tratar erros de login, exibir mensagem de erro, etc.
+          console.error(error.message);
+        });
+    });
+  </script>
 </body>
 </html>
