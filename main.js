@@ -2,7 +2,7 @@ var mainApp = {};
 (function(){
 var mainContainer = document.getElementById("main_container");
 
-    var logtout =  function(){
+    var Sair =  function(){
         firebase.auth().signOut().then(function(){
             console.log('success');
             window.location.replace("login.html");
@@ -26,5 +26,5 @@ var init = function(){
     
 init();
 
-mainApp.logout = SAIR;
+mainApp.Sair = SAIR;
 })();
