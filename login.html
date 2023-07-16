@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,15 +9,26 @@
     <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-    
+
+    <style>
+        /* Adicione regras CSS personalizadas abaixo */
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            color: blue; /* Altera a cor para azul */
+        }
+    </style>
 </head>
 <body>
     <!-- O HTML circundante não é afetado pelo FirebaseUI.
          O espaço pode ser usado para branding, controles e outras personalizações.-->
-         <h1 style="text-align: center;">Login To Play</h1>
-         <div id="firebaseui-auth-container"></div>
+    <h1>Login Para Jogar</h1>
+    <div id="firebaseui-auth-container"></div>
 
-<script src="fireBase.js"></script>
-<script src="login.js"></script>
+    <script src="fireBase.js"></script>
+    <script src="login.js"></script>
 </body>
 </html>
