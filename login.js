@@ -1,20 +1,43 @@
-// FirebaseUI config.
-var uiConfig = {
-  signInSuccessUrl: 'index.html',
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-          //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-          //firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-          //firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-          //firebase.auth.GithubAuthProvider.PROVIDER_ID,
-          firebase.auth.EmailAuthProvider.PROVIDER_ID,
-          //firebase.auth.PhoneAuthProvider.PROVIDER_ID
-  ],
-  // Terms of service url.
-  tosUrl: 'index.html'
+// Configuração do Firebase
+const firebaseConfig = {
+ apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
+      authDomain: "padariareceituario.firebaseapp.com",
+      projectId: "padariareceituario",
+      storageBucket: "padariareceituario.appspot.com",
+      messagingSenderId: "159527859464",
+      appId: "1:159527859464:web:8888b169348e12fe1868bd"
 };
 
-// Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
-// The start method will wait until the DOM is loaded.
-ui.start('#firebaseui-auth-container', uiConfig);
+firebase.initializeApp(firebaseConfig);
+
+const loginForm = document.getElementById('loginForm');
+const btnRegister = document.getElementById('btnRegister');
+const errorMessage = document.getElementById('errorMessage');
+const successMessage = document.getElementById('successMessage');
+
+// Função para realizar o login
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const email = loginForm['email'].value;
+  const password = loginForm['password'].value;
+
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(() => {
+      errorMessage.style.display = 'none';
+      successMessage.style.display = 'block';
+      setTimeout(() => {
+        window.location.href = 'index.html';
+      }, 2000); // Redireciona após 2 segundos
+    })
+    .catch((error) => {
+      errorMessage.style.display = 'block';
+      successMessage.style.display = 'none';
+      console.error(error);
+    });
+});
+
+// Redirecionar para a tela de registro
+btnRegister.addEventListener('click', () => {
+  window.location.href = 'registro.html';
+});
