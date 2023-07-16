@@ -59,12 +59,12 @@
       // Fazer o login com Firebase
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function(user) {
-          // Sucesso - redirecionar para a página desejada após o login
-          window.location.href = "pagina_desejada.html";
+          // Sucesso - redirecionar para a página index.html após o login bem-sucedido
+          window.location.href = "index.html";
         })
         .catch(function(error) {
           // Mostrar mensagem de erro
-          document.getElementById("error-message").innerText = "Credenciais inválidas. Por favor, tente novamente.";
+          document.getElementById("error-message").innerText = "Credenciais inválidas. Por favor, verifique o e-mail e a senha.";
         });
     });
   </script>
