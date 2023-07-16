@@ -1,24 +1,73 @@
-<!-- No final do body, adicione o seguinte script após os outros scripts já referenciados -->
-<script>
-    function realizarLogin() {
-        // Obtém os valores dos campos de usuário, senha e manter logado
-        const usuario = document.getElementById('usuario').value;
-        const senha = document.getElementById('senha').value;
-        const manterLogado = document.getElementById('manterLogado').checked;
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Aim Helper</title>
+    <!-- Adicionando os links do Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Aqui colocamos a imagem à esquerda -->
+                <img src="caminho/para/sua/imagem.jpg" alt="Imagem de login" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <!-- Aqui colocamos o formulário de login à direita -->
+                <h1 class="text-center">Login Para Jogar</h1>
+                <div id="firebaseui-auth-container">
+                    <!-- Adicionando os campos de usuário, senha e manter logado -->
+                    <div class="form-group">
+                        <label for="usuario">Usuário</label>
+                        <input type="text" class="form-control" id="usuario" placeholder="Digite seu usuário">
+                    </div>
+                    <div class="form-group">
+                        <label for="senha">Senha</label>
+                        <input type="password" class="form-control" id="senha" placeholder="Digite sua senha">
+                    </div>
+                    <div class="form-check">
+                        <input type="checkbox" class="form-check-input" id="manterLogado">
+                        <label class="form-check-label" for="manterLogado">Manter logado</label>
+                    </div>
+                    <button type="button" class="btn btn-primary" onclick="realizarLogin()">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // Realiza a autenticação no Firebase usando os valores obtidos
-        firebase.auth().signInWithEmailAndPassword(usuario, senha)
-            .then((userCredential) => {
-                // Login com sucesso
-                const user = userCredential.user;
-                alert('Login realizado com sucesso!');
-                // Aqui você pode redirecionar para a página de sucesso ou fazer outras ações necessárias
-            })
-            .catch((error) => {
-                // Ocorreu um erro no login
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                alert('Erro ao fazer login: ' + errorMessage);
-            });
-    }
-</script>
+    <!-- Adicionando os scripts do Firebase e Bootstrap -->
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.2/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
+    <script src="fireBase.js"></script>
+    <script src="login.js"></script>
+
+    <!-- Script para realizar o login e exibir os alertas -->
+    <script>
+        function realizarLogin() {
+            // Obtém os valores dos campos de usuário, senha e manter logado
+            const usuario = document.getElementById('usuario').value;
+            const senha = document.getElementById('senha').value;
+            const manterLogado = document.getElementById('manterLogado').checked;
+
+            // Realiza a autenticação no Firebase usando os valores obtidos
+            firebase.auth().signInWithEmailAndPassword(usuario, senha)
+                .then((userCredential) => {
+                    // Login com sucesso
+                    const user = userCredential.user;
+                    alert('Login realizado com sucesso!');
+                    // Aqui você pode redirecionar para a página de sucesso ou fazer outras ações necessárias
+                })
+                .catch((error) => {
+                    // Ocorreu um erro no login
+                    const errorCode = error.code;
+                    const errorMessage = error.message;
+                    alert('Erro ao fazer login: ' + errorMessage);
+                });
+        }
+    </script>
+</body>
+</html>
