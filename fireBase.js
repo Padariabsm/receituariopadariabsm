@@ -1,4 +1,4 @@
-<script>
+
     // Configuração do Firebase
     var firebaseConfig = {
       apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
@@ -32,5 +32,5 @@
           document.getElementById("error-message").innerText = "Credenciais inválidas. Por favor, verifique o e-mail e a senha.";
         });
     });
-</script>
+
 
