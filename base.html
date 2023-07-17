@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calculadora de Ingredientes</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Adicione o botão de logout no canto superior direito -->
+    <button onclick="logout()" class="btn btn-danger" style="position: absolute; top: 10px; right: 10px;">Logout</button>
+
+    <h2>Calculadora de Ingredientes</h2>
+    <div class="mb-3">
+      <label for="eanInput" class="form-label">EAN:</label>
+      <input type="text" id="eanInput" class="form-control" oninput="exibirTextoBreveMaterial()" />
+    </div>
+    <div class="mb-3">
+      <label for="textoBreveMaterial" class="form-label">Texto breve material:</label>
+      <span id="textoBreveMaterial"></span>
+    </div>
+    <div class="mb-3">
+      <label for="quantidadeInput" class="form-label">Quantidade:</label>
+      <input type="text" id="quantidadeInput" class="form-control" />
+    </div>
+    <button onclick="buscarIngredientes()" class="btn btn-primary">Buscar</button>
+    <div id="resultadoDiv" class="mt-3"></div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Dados em formato JSON
+    var dados = {
+      "Sheet1": [
+        // Insira os dados do JSON aqui...
+        // Exemplo:
+        // {
+        //   "EAN": "123456789",
+        //   "Produto": "Produto X",
+        //   "Quantidade": 0.5,
+        //   "Unid.med.componente": "g",
+        //   "Ingrediente": "Ingrediente A",
+        //   "Imagem": "https://exemplo.com/imagem1.jpg"
+        // },
+        // {
+        //   "EAN": "987654321",
+        //   "Produto": "Produto Y",
+        //   "Quantidade": 0.3,
+        //   "Unid.med.componente": "ml",
+        //   "Ingrediente": "Ingrediente B",
+        //   "Imagem": "https://exemplo.com/imagem2.jpg"
+        // }
+      ]
+    };
+
+    // Função para buscar os ingredientes e exibir a tabela
+    function buscarIngredientes() {
+      var ean = $("#eanInput").val();
+      var quantidade = parseFloat($("#quantidadeInput").val());
+
+      // Filtrar os dados do JSON pelo EAN informado
+      var filteredData = dados.Sheet1.filter(function (item) {
+        return item.EAN === ean;
+      });
+
+      // Exibir o Texto breve material correspondente
+      if (filteredData.length > 0) {
+        var textoBreveMaterial = filteredData[0].Produto;
+        $("#textoBreveMaterial").text(textoBreveMaterial);
+      } else {
+        $("#textoBreveMaterial").text("");
+      }
+
+      // Criar a tabela HTML
+      var table = "<table class='table'><thead><tr><th>Ingrediente</th><th>Quantidade</th><th>Unidade de Medida</th><th>Imagem</th></tr></thead><tbody>";
+
+      // Calcular a quantidade de cada ingrediente multiplicando pela quantidade informada
+      filteredData.forEach(function (item) {
+        var quantidadeComponente = item.Quantidade * quantidade;
+        table += "<tr><td>" + item.Ingrediente + "</td><td>" + quantidadeComponente.toFixed(3) + "</td><td>" + item["Unid.med.componente"] + "</td><td><img src='" + item.Imagem + "' alt='Imagem do produto' style='max-height: 100px;'></td></tr>";
+      });
+
+      table += "</tbody></table>";
+
+      // Exibir a tabela na div de resultado
+      $("#resultadoDiv").html(table);
+    }
+
+    // Função para exibir o Texto breve material correspondente ao digitar o EAN
+    function exibirTextoBreveMaterial() {
+      var ean = $("#eanInput").val();
+      var filteredData = dados.Sheet1.filter(function (item) {
+        return item.EAN === ean;
+      });
+      if (filteredData.length > 0) {
+        var textoBreveMaterial = filteredData[0].Produto;
+        $("#textoBreveMaterial").text(textoBreveMaterial);
+      } else {
+        $("#textoBreveMaterial").text("");
+      }
+    }
+
+    // Função para realizar o logout e redirecionar para a página "login.html"
+    function logout() {
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
