@@ -13,68 +13,14 @@
       height: 100vh; /* Altura de 50% da tela */
     }
 
-    .half-screen-image img {
-      max-width: 135%;
-      max-height: 150%;
-    }
-
-    /* Estilo para o formulário de login ficar à direita */
-    .login-form-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh; /* Altura de 50% da tela */
-    }
-
-    .login-form {
-      width: 300px; /* Largura do formulário */
-    }
-
-    /* Mídia query para telas menores, ajuste os valores conforme necessário */
-    @media screen and (max-width: 768px) {
-      .half-screen-image img {
-        max-width: 100%;
-        max-height: 100%;
-      }
-    }
-
-    /* Definindo a animação de fade-in */
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-
-    /* Aplicando a animação de fade-in à classe .fade-in */
-    .fade-in {
-      animation: fade-in 1s;
-    }
-
-    /* Definindo a animação de fade-out */
-    @keyframes fade-out {
-      from {
-        opacity: 1;
-      }
-      to {
-        opacity: 0;
-      }
-    }
-
-    /* Aplicando a animação de fade-out à classe .fade-out */
-    .fade-out {
-      animation: fade-out 1s;
-    }
+    /* Resto do código de estilo... */
   </style>
 </head>
 <body>
   <div class="container">
     <div class="row">
-      <div class="col-md-6 half-screen-image">
-        <img src="https://uploaddeimagens.com.br/images/004/546/339/original/receita_logo1.png?1689556706" alt="Logo da Receita">
-      </div>
+      <!-- Resto do código da imagem de logo... -->
+
       <!-- Conteúdo da tela de login -->
       <div class="col-md-6 login-form-container">
         <div class="login-form">
@@ -105,12 +51,12 @@
   <script>
     // Configuração do Firebase
     var firebaseConfig = {
-      apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
-      authDomain: "padariareceituario.firebaseapp.com",
-      projectId: "padariareceituario",
-      storageBucket: "padariareceituario.appspot.com",
-      messagingSenderId: "159527859464",
-      appId: "1:159527859464:web:8888b169348e12fe1868bd"
+      apiKey: "sua-api-key",
+      authDomain: "seu-auth-domain",
+      projectId: "seu-project-id",
+      storageBucket: "seu-storage-bucket",
+      messagingSenderId: "seu-messaging-sender-id",
+      appId: "seu-app-id"
     };
 
     // Inicializar o Firebase com a configuração
@@ -128,13 +74,23 @@
       // Fazer o login com Firebase
       firebase.auth().signInWithEmailAndPassword(email, password)
         .then(function(user) {
-          // Sucesso - redirecionar para a página index.html após o login bem-sucedido
+          // Sucesso - redirecionar para a página menu.html após o login bem-sucedido
           window.location.href = "menu.html";
         })
         .catch(function(error) {
           // Mostrar mensagem de erro
           document.getElementById("error-message").innerText = "Credenciais inválidas. Por favor, verifique o e-mail e a senha.";
         });
+    });
+
+    // Verificar o estado de autenticação do usuário ao carregar a página
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        // O usuário está autenticado, redirecionar para "menu.html"
+        window.location.href = "menu.html";
+      } else {
+        // O usuário não está autenticado, permanecer na "index.html"
+      }
     });
   </script>
 </body>
