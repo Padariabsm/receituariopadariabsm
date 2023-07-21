@@ -39,9 +39,8 @@
       width: 300px; /* Largura do formulário */
     }
 
-    /* Mídia query para telas menores, ajuste os valores conforme necessário */
+    /* Mídia query para telas maiores que 768px (computadores) */
     @media screen and (min-width: 768px) {
-      /* Para telas maiores que 768px (computadores) */
       .image-container {
         flex: 1 1 50%; /* Para ocupar metade da largura disponível */
         height: 100vh; /* Altura de 100% da tela */
@@ -52,6 +51,18 @@
         flex: 1 1 50%; /* Para ocupar metade da largura disponível */
         height: 100vh; /* Altura de 100% da tela */
         justify-content: center;
+      }
+    }
+
+    /* Mídia query para telas menores que 768px (dispositivos móveis) */
+    @media screen and (max-width: 767px) {
+      /* Inverter a ordem das divs para melhor visualização */
+      .container {
+        flex-direction: column;
+      }
+
+      .login-form-container {
+        order: 1; /* Mover o login abaixo da imagem */
       }
     }
 
@@ -120,7 +131,7 @@
   <script>
     // Configuração do Firebase
     var firebaseConfig = {
-       apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
+     apiKey: "AIzaSyDdKuFRrZdZfmYyFHefYpsqeNleEPMSSFA",
       authDomain: "padariareceituario.firebaseapp.com",
       projectId: "padariareceituario",
       storageBucket: "padariareceituario.appspot.com",
