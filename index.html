@@ -58,11 +58,16 @@
     @media screen and (max-width: 767px) {
       /* Inverter a ordem das divs para melhor visualização */
       .container {
-        flex-direction: column;
+        flex-direction: column-reverse; /* Reverter a ordem das divs para que o formulário fique abaixo da imagem */
+      }
+
+      .image-container {
+        height: 30vh; /* Reduzir a altura da imagem para uma melhor visualização */
+        align-items: center;
       }
 
       .login-form-container {
-        order: 1; /* Mover o login abaixo da imagem */
+        height: 70vh; /* Reduzir a altura do formulário para uma melhor visualização */
       }
     }
 
